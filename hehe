@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng 8/3</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6f2;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gift-box {
+            width: 120px;
+            height: 120px;
+            background-color: pink;
+            position: relative;
+            cursor: pointer;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 24px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+        .gift-box:hover {
+            transform: scale(1.1);
+        }
+        .heart {
+            display: none;
+            font-size: 60px;
+            color: red;
+            animation: pop 1s ease-in-out;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @keyframes pop {
+            0% { transform: scale(0) translate(-50%, -50%); opacity: 0; }
+            50% { transform: scale(1.5) translate(-50%, -50%); opacity: 1; }
+            100% { transform: scale(1) translate(-50%, -50%); }
+        }
+        .message {
+            display: none;
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+            animation: fadeIn 1.5s ease-in-out;
+            color: #d63384;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: gold;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); }
+            100% { transform: translateY(100vh) rotate(360deg); }
+        }
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,192,203,0.8) 10%, rgba(255,105,180,0.8) 50%, rgba(255,20,147,0.8) 90%);
+            z-index: -1;
+            animation: bgPulse 5s infinite alternate;
+        }
+        @keyframes bgPulse {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="gift-box" onclick="openGift()">🎁</div>
+    <div class="heart">❤️</div>
+    <div class="message">Chúc mừng 8/3 ăng ghe lờ của nợn, chúc pék ngày càng xink đẹp, càng nhận nhiều thứ tốt đẹp hơn và yêu nợn nhiều hưn!</div>
+    
+    <script>
+        function openGift() {
+            document.querySelector('.gift-box').style.display = 'none';
+            document.querySelector('.heart').style.display = 'block';
+            document.querySelector('.message').style.display = 'block';
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                let confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                document.body.appendChild(confetti);
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                confetti.style.backgroundColor = ['red', 'yellow', 'blue', 'green', 'pink', 'purple'][Math.floor(Math.random() * 6)];
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+    </script>
+</body>
+</html>
